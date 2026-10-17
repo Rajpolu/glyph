@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #090a0f;
+  --foreground: #f1f5f9;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+*, ::before, ::after {
+  border-width: 0;
+  border-style: solid;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom soft scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Prism Syntax Highlighting Tokens */
+.token.keyword { color: var(--syn-keyword, #ff79c6); font-weight: 500; }
+.token.string { color: var(--syn-string, #f1fa8c); }
+.token.function { color: var(--syn-function, #50fa7b); }
+.token.number { color: var(--syn-number, #bd93f9); }
+.token.comment { color: var(--syn-comment, #6272a4); font-style: italic; opacity: 0.8; }
+.token.operator { color: var(--syn-operator, #ff79c6); }
+.token.class-name, .token.builtin { color: var(--syn-class, #8be9fd); font-weight: 500; }
+.token.punctuation { color: var(--syn-punctuation, #f8f8f2); opacity: 0.85; }
+.token.property { color: var(--syn-property, #66d9ef); }
+.token.boolean { color: var(--syn-boolean, #bd93f9); }
+.token.tag { color: var(--syn-keyword, #ff79c6); }
+.token.attr-name { color: var(--syn-class, #8be9fd); }
+.token.attr-value { color: var(--syn-string, #f1fa8c); }
+
+/* Utility to hide scrollbars while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide Next.js dev tools badge and indicators */
+nextjs-portal,
+[data-nextjs-dev-tools-button],
+[data-next-badge],
+div[class*="nextjs-toast"] {
+  display: none !important;
+}
+
+/* Remove default browser borders and paddings from color selector inputs */
+input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0 !important;
+  border: none !important;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none !important;
+  border-radius: 6px !important;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none !important;
+  border-radius: 6px !important;
+}
+
