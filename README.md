@@ -12,6 +12,7 @@
 </p>
 
 <p align="center">
+  <a href="https://glyph-snippets.vercel.app"><img src="https://img.shields.io/badge/Live_Demo-glyph--snippets.vercel.app-7928CA?style=flat&logo=vercel" alt="Live Demo" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
   <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat&logo=next.js" alt="Next.js 16" /></a>
   <a href="https://react.dev"><img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat&logo=react&logoColor=black" alt="React 19" /></a>
