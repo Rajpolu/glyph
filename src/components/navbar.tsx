@@ -28,6 +28,7 @@ import {
   Bookmark,
   Film,
   Image as ImageIcon,
+  SlidersHorizontal,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -36,9 +37,19 @@ interface NavbarProps {
   onChange: (updates: Partial<SnippetState>) => void;
   onLoadSnippet?: (state: SnippetState) => void;
   onOpenAbout?: () => void;
+  isSidebarOpen?: boolean;
+  onToggleSidebar?: () => void;
 }
 
-export function Navbar({ canvasRef, state, onChange, onLoadSnippet, onOpenAbout }: NavbarProps) {
+export function Navbar({
+  canvasRef,
+  state,
+  onChange,
+  onLoadSnippet,
+  onOpenAbout,
+  isSidebarOpen = false,
+  onToggleSidebar,
+}: NavbarProps) {
   const { showToast } = useToast();
   const { isPro } = useProLicense();
   const [isExporting, setIsExporting] = useState(false);
@@ -308,7 +319,25 @@ export function Navbar({ canvasRef, state, onChange, onLoadSnippet, onOpenAbout 
     <header className="sticky top-0 z-50 w-full bg-[#090a0f]/80 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-6 h-16">
         {/* High-Res Vector Brand Logo & Identity */}
-        <div className="flex items-center gap-2.5 sm:gap-6 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          {/* Controls Toggle Button at top-left (JUST BUTTON ICON) */}
+          {onToggleSidebar && (
+            <button
+              type="button"
+              onClick={onToggleSidebar}
+              aria-label={isSidebarOpen ? "Close Controls Sidebar" : "Open Controls Sidebar"}
+              title={isSidebarOpen ? "Close Controls Sidebar" : "Open Controls Sidebar"}
+              className={cn(
+                "w-9 h-9 rounded-xl border transition-all cursor-pointer flex items-center justify-center shrink-0 shadow-sm",
+                isSidebarOpen
+                  ? "bg-indigo-600 text-white border-indigo-500 shadow-indigo-500/25 scale-105"
+                  : "bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border-white/10 hover:border-white/20 active:scale-95"
+              )}
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+            </button>
+          )}
+
           <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer select-none shrink-0">
             {/* High-Resolution SVG Geometric Aperture/Prism Logo */}
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 p-1.5 shadow-[0_4px_20px_rgba(99,102,241,0.25)] group-hover:shadow-[0_4px_25px_rgba(99,102,241,0.4)] transition-all flex items-center justify-center shrink-0">

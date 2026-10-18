@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { SnippetState, DEFAULT_STATE } from "@/lib/presets";
 import { decodeSnippetState } from "@/lib/url-state";
 import { Navbar } from "@/components/navbar";
-import { ControlsToolbar } from "@/components/toolbar/controls-toolbar";
+import { ControlsSidebar } from "@/components/sidebar/controls-sidebar";
 import { CodeCanvas } from "@/components/canvas/code-canvas";
 import { ToastProvider, useToast } from "@/components/ui/toast";
 import { exportToPng, copyImageToClipboard, fireConfetti } from "@/lib/export-image";
@@ -13,6 +13,7 @@ import { AboutShortcutsModal } from "@/components/modals/about-shortcuts-modal";
 function SnippetApp() {
   const [state, setState] = useState<SnippetState>(DEFAULT_STATE);
   const [showAboutModal, setShowAboutModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
   const { showToast } = useToast();
 
@@ -113,10 +114,17 @@ function SnippetApp() {
         onChange={updateState}
         onLoadSnippet={replaceState}
         onOpenAbout={() => setShowAboutModal(true)}
+        isSidebarOpen={isSidebarOpen}
+        onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
       />
 
-      {/* Floating Toolbar Controls */}
-      <ControlsToolbar state={state} onChange={updateState} />
+      {/* Controls Sidebar with New Gradient Editor Tool */}
+      <ControlsSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        state={state}
+        onChange={updateState}
+      />
 
       {/* Main Interactive Canvas Area (Fluid Auto Layout) */}
       <main className="flex-1 flex flex-col items-center justify-center py-4 sm:py-8 px-2 sm:px-6 w-full max-w-full overflow-x-hidden">
@@ -142,8 +150,8 @@ function SnippetApp() {
             <span className="text-slate-600 hidden sm:inline">•</span>
             <span className="text-slate-400 hidden sm:inline">Code into art</span>
           </div>
-          <div className="font-medium text-slate-300">
-            Made with ❤️ by{" "}
+          <div className="font-medium text-slate-300 flex items-center gap-1.5">
+            <span>Built by</span>
             <a
               href="https://github.com/rajpolu"
               target="_blank"
